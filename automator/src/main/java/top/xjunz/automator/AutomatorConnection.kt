@@ -354,7 +354,8 @@ class AutomatorConnection : IAutomatorConnection.Stub() {
     }
 
     private fun checkRegion(nodeRect: Rect, windowRect: Rect, result: Result): Boolean {
-        if (/*nodeRect.exactCenterX() > windowRect.width() / 4f &&*/ nodeRect.exactCenterX() < windowRect.width() / 3f * 2) {
+        if (nodeRect.exactCenterX() < windowRect.width() / 3f * 2 && nodeRect.exactCenterX() > windowRect.width() / 3f * 1 ||
+            nodeRect.exactCenterY() < windowRect.height() / 4f * 3 && nodeRect.exactCenterY() > windowRect.height() / 4f * 1 ) {
             result.maskReason(Result.REASON_ILLEGAL_LOCATION or Result.REASON_MASK_TRANSVERSE)
             return false
         }
